@@ -40,3 +40,7 @@ def play_batting(target=45, wickets=2):
         print("🎉 AI won the match!")
     else:
         print("🏆 You won! AI couldn't chase the target.")
+
+    return ()
+if __name__ == "__main__":
+    play_batting()

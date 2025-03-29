@@ -38,3 +38,7 @@ def play_bowling(target=45, wickets=2):
         print("🎉 You won the match!")
     else:
         print("🏆 AI won! You couldn't chase the target.")
+
+        return ()
+if __name__ == "__main__":
+    play_bowling()
