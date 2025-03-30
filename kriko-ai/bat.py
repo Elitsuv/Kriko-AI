@@ -1,9 +1,11 @@
 import numpy as np
 import random
+from core import reset
 
 def play_batting(target=45, wickets=2):
     ai_score = 0
     data = []
+    reset()
 
     print("🏏 Welcome to Kriko AI Batting Mode! AI will try to chase the target.")
 
