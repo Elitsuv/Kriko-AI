@@ -1,9 +1,11 @@
 import numpy as np
 import random
+from core import reset
 
 def play_bowling(target=45, wickets=2):
     user_score = 0
     ai_data = []
+    reset()
 
     print("🎳 Welcome to Kriko AI Bowling Mode! Try to chase the target.")
 
