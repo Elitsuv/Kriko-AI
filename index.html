@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kriko AI - Intelligent Hand Cricket</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        body {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            line-height: 1.6;
+            text-align: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        a {
+            color: #58a6ff;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #79c0ff;
+        }
+
+        /* Header */
+        .header {
+            padding: 20px 40px;
+            background: #161b22;
+            border-bottom: 1px solid #30363d;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header .logo {
+            font-size: 26px;
+            font-weight: 700;
+        }
+        .header .nav a {
+            margin-left: 20px;
+            font-weight: 600;
+        }
+
+        /* Hero */
+        .hero {
+            margin: 100px auto 40px;
+            max-width: 900px;
+            padding: 50px;
+            background: #161b22;
+            border-radius: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+        .hero.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .hero h1 {
+            font-size: 40px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+        .hero p {
+            font-size: 18px;
+            color: #8b949e;
+            margin-bottom: 25px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero .button {
+            display: inline-block;
+            background-color: #238636;
+            color: #ffffff;
+            padding: 12px 35px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .hero .button:hover {
+            background-color: #2ea043;
+            transform: scale(1.05);
+        }
+
+        /* Content */
+        .content {
+            max-width: 900px;
+            margin: 0 auto 40px;
+            padding: 40px;
+            background: #161b22;
+            border-radius: 10px;
+            text-align: left;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease 0.2s;
+        }
+        .content.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .content h2 {
+            font-size: 26px;
+            color: #58a6ff;
+            margin-bottom: 20px;
+        }
+        .content p {
+            color: #c9d1d9;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        .content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .content ul li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            font-size: 16px;
+        }
+        .content ul li::before {
+            content: '\f058';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #58a6ff;
+        }
+
+        /* Code Box */
+        .code-box {
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 15px;
+            position: relative;
+            margin-top: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #c9d1d9;
+            text-align: left;
+            white-space: pre-wrap;
+        }
+        .code-box button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #238636;
+            color: #ffffff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background-color 0.3s ease;
+        }
+        .code-box button:hover {
+            background: #2ea043;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 20px 0;
+            font-size: 14px;
+            color: #8b949e;
+            border-top: 1px solid #30363d;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">Kriko AI</div>
+        <div class="nav">
+            <a href="#features">Features</a>
+            <a href="#usage">Usage</a>
+            <a href="#docs">Docs</a>
+        </div>
+    </div>
+
+    <div class="hero">
+        <h1>Kriko AI</h1>
+        <p>An open-source AI opponent for hand cricket, adapting to your moves in real time.</p>
+        <a href="https://github.com/elitsuv/Kriko" class="button" target="_blank">
+            <i class="fa-brands fa-github"></i> Get Started
+        </a>
+    </div>
+
+    <div class="content" id="features">
+        <h2>Features</h2>
+        <ul>
+            <li><strong>Gesture Recognition:</strong> Detects 1-6 finger gestures using machine learning.</li>
+            <li><strong>Adaptive AI:</strong> Learns your playstyle to keep matches challenging.</li>
+            <li><strong>Real-Time Play:</strong> Fast, lag-free responses for smooth gameplay.</li>
+        </ul>
+
+        <h2 id="usage">How to Use</h2>
+        <p>Play hand cricket against Kriko AI with these simple steps:</p>
+        <ul>
+            <li>Hold up 1-6 fingers to make your move.</li>
+            <li>Kriko analyzes and responds instantly.</li>
+            <li>Outsmart the AI to score and win!</li>
+        </ul>
+
+        <h2 id="docs">Documentation</h2>
+        <p>Contribute or run Kriko AI locally with these steps. Full details on the <a href="https://github.com/elitsuv/Kriko/wiki" target="_blank">GitHub Wiki</a>.</p>
+        <div class="code-box">
+            <button onclick="navigator.clipboard.writeText(this.nextSibling.textContent.trim())">Copy</button>
+            <code>
+git clone https://github.com/elitsuv/Kriko.git
+cd Kriko
+pip install -r requirements.txt
+python model.py
+            </code>
+        </div>
+    </div>
+
+    <div class="footer">
+        © 2025 Kriko AI | Built by Elitsuv
+    </div>
+
+    <script>
+        // Fade-in animation on scroll
+        const elements = document.querySelectorAll('.hero, .content');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        elements.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
