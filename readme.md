@@ -1,16 +1,25 @@
-# 🏏 Kriko - AI Hand Cricket  
+# 🏏 Kriko - AI Hand Cricket
 
-Kriko is an **AI-powered Hand Cricket game** that adapts to your bowling patterns using NumPy. Play against a smart AI that learns as you bowl!  
+**Kriko** is an AI-powered Hand Cricket player built with Python and NumPy. Play against a smart AI that learns your bowling patterns (1-6) and adapts its batting strategy!
 
-## 🚀 Features  
-✅ **AI Learning** - Predicts your bowling pattern and adjusts its shots.  
-✅ **Simple Gameplay** - Enter a number (1-6) to bowl, AI will bat strategically.  
-✅ **Lightweight & Fast** - Uses only Python & NumPy.  
+## 🚀 Features
+- **Smart AI**: Predicts your moves using NumPy.
+- **Simple Gameplay**: Bowl a number (1-6), AI bats strategically.
+- **Lightweight**: Runs on Python and NumPy.
 
-## 📦 Installation  
+## 📦 Setup
+1. Clone the repo:  
+   ```sh
+   git clone https://github.com/elitsuv/Kriko.git
+   cd Kriko
 
-Clone this repository and install dependencies:  
-```sh
-git clone https://github.com/elitsuv/Kriko.git  
-cd Kriko  
-pip install numpy
+2. Must have *Python 3.6+* and *Numpy* library
+
+## How to Play
+Bowl by entering 1-6.
+AI bats; same number = out, else it scores.
+Outsmart the adapting AI!
+
+## License
+
+[![MIT License](https://img.shields.io/badge/License-MIT-red.svg)](https://choosealicense.com/licenses/mit/)
