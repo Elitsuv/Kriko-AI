@@ -21,7 +21,7 @@
 
 1. **Clone the repository:**
    ```sh
-   git clone [https://github.com/elitsuv/Kriko.git](https://github.com/elitsuv/Kriko.git)
+   git clone [https://github.com/elitsuv/Kriko.git](https://github.com/elitsuv/Kriko-AI.git)
    cd Kriko
 
 2. **Prerequisites:**
