@@ -2,20 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kriko AI</title>
   <link rel="icon" href="ki.jpg" type="image/x-icon" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     :root {
-      --dark-violet: #4B0082;
-      --light-violet: #7a0dd3;
+      --accent: #FF1D58;
       --white: #ffffff;
-      --off-white: #f8f9fa;
       --gray-dark: #2b2b2b;
-      --border-radius: 8px;
+      --gray-light: #e0e0e0;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
       --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --border-radius: 8px;
     }
 
     * {
@@ -25,19 +25,18 @@
     }
 
     body {
-      font-family: 'Open Sans', sans-serif;
+      font-family: 'Inter', sans-serif;
       background: var(--white);
       color: var(--gray-dark);
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
     }
 
     .header {
-      background: var(--dark-violet);
       padding: 20px;
       text-align: center;
-      box-shadow: var(--shadow-md);
+      border-bottom: 1px solid var(--gray-light);
     }
 
     .navbar {
@@ -49,10 +48,11 @@
     }
 
     .logo a {
-      font-size: 26px;
-      font-weight: bold;
-      color: var(--white);
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--gray-dark);
       text-decoration: none;
+      text-transform: uppercase;
     }
 
     .nav-links {
@@ -61,19 +61,114 @@
     }
 
     .nav-links a {
-      color: var(--white);
-      padding: 8px 16px;
-      background: var(--light-violet);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--gray-dark);
       text-decoration: none;
-      border-radius: var(--border-radius);
       font-weight: 600;
-      transition: background 0.3s ease;
-      border: 1px solid transparent;
+      padding: 8px 16px;
+      border-radius: var(--border-radius);
+      transition: color 0.3s ease, background 0.3s ease;
     }
 
     .nav-links a:hover {
-      background: var(--dark-violet);
-      border: 1px solid var(--white);
+      color: var(--accent);
+      background: rgba(255, 29, 88, 0.05);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 80px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 60px;
+      font-weight: 900;
+      background: linear-gradient(45deg, var(--accent), #ff6b91);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 24px;
+      animation: fadeIn 1s ease-in-out;
+      line-height: 1.2;
+    }
+
+    .hero .tagline {
+      font-size: 20px;
+      color: #555;
+      margin-bottom: 32px;
+      font-weight: 600;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero .demo-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 24px;
+      background: var(--accent);
+      color: var(--white);
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: var(--border-radius);
+      transition: background 0.3s ease;
+    }
+
+    .hero .demo-btn:hover {
+      background: #e0144c;
+    }
+
+    .highlights {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .highlights h2 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .highlight-card {
+      background: var(--white);
+      padding: 24px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-sm);
+      text-align: left;
+      transition: transform 0.3s ease;
+    }
+
+    .highlight-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .highlight-card h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--accent);
+    }
+
+    .highlight-card p {
+      font-size: 16px;
+      color: #555;
+      line-height: 1.5;
     }
 
     .chat-container {
@@ -82,29 +177,31 @@
       background: var(--white);
       border-radius: var(--border-radius);
       box-shadow: var(--shadow-md);
-      display: flex;
+      display: none;
       flex-direction: column;
-      height: 550px; /* Fixed height */
-      max-height: 550px; /* Enforce max height */
-      overflow: hidden; /* Prevent overflow from expanding container */
+      height: 550px;
+      overflow: hidden;
+    }
+
+    .chat-container.active {
+      display: flex;
     }
 
     .chat-header {
-      background: var(--dark-violet);
-      color: var(--white);
+      background: var(--white);
+      color: var(--gray-dark);
       padding: 15px;
       font-size: 20px;
       font-weight: 600;
       text-align: center;
-      flex-shrink: 0; /* Prevent header from shrinking */
+      border-bottom: 1px solid var(--gray-light);
     }
 
     .chat-messages {
       flex: 1;
       padding: 20px;
       overflow-y: auto;
-      background: var(--off-white);
-      min-height: 0; /* Respect container height */
+      background: #fafafa;
     }
 
     .message {
@@ -129,14 +226,14 @@
     }
 
     .message.user .message-content {
-      background: var(--dark-violet);
+      background: var(--accent);
       color: var(--white);
     }
 
     .message.ai .message-content {
       background: var(--white);
       color: var(--gray-dark);
-      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+      box-shadow: var(--shadow-sm);
     }
 
     .ai-avatar {
@@ -147,7 +244,7 @@
       overflow: hidden;
       background: var(--white);
       padding: 2px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+      box-shadow: var(--shadow-sm);
     }
 
     .ai-avatar img {
@@ -160,24 +257,23 @@
     .chat-input {
       padding: 15px;
       background: var(--white);
-      border-top: 1px solid #ddd;
+      border-top: 1px solid var(--gray-light);
       display: flex;
       gap: 10px;
-      flex-shrink: 0; /* Prevent input area from shrinking */
     }
 
     .chat-input input {
       flex: 1;
       padding: 10px 14px;
       border-radius: 6px;
-      border: 1px solid #ccc;
+      border: 1px solid var(--gray-light);
       font-size: 15px;
       outline: none;
     }
 
     .chat-input button {
       padding: 10px 20px;
-      background: var(--dark-violet);
+      background: var(--accent);
       color: var(--white);
       border: none;
       border-radius: 6px;
@@ -186,20 +282,21 @@
     }
 
     .chat-input button:hover {
-      background: var(--light-violet);
+      background: #e0144c;
     }
 
     .footer {
-      background: #fff;
-      border-top: 1px solid #e0e0e0;
+      background: var(--white);
+      border-top: 1px solid var(--gray-light);
       padding: 1.5rem;
       text-align: center;
       font-size: 14px;
       color: #666;
+      margin-top: auto;
     }
 
     .footer a {
-      color: #5c30c3;
+      color: var(--accent);
       text-decoration: none;
     }
 
@@ -212,27 +309,74 @@
         flex-direction: column;
         gap: 10px;
       }
+      .hero h1 {
+        font-size: 40px;
+      }
+      .hero .tagline {
+        font-size: 18px;
+      }
       .chat-container {
         margin: 20px;
-        height: 400px; /* Adjusted for smaller screens */
-        max-height: 400px;
+        height: 400px;
+      }
+      .highlights h2 {
+        font-size: 28px;
       }
     }
   </style>
 </head>
 <body>
-
   <header class="header">
     <nav class="navbar">
       <div class="logo">
-        <a href="/">Kriko AI</a>
+        <a href="/">KRIKO-AI</a>
       </div>
       <div class="nav-links">
-        <a href="https://github.com/elitsuv/kriko-ai" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-        <a href="#" target="_blank"><i class="fas fa-comment-dots"></i> Feedback</a>
+        <a href="https://github.com/elitsuv/kriko-ai" target="_blank">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+        <a href="#" target="_blank">
+          <i class="fas fa-book"></i> Docs
+        </a>
+        <a href="#" target="_blank">
+          <i class="fas fa-comment-dots"></i> Feedback
+        </a>
       </div>
     </nav>
   </header>
+
+  <section class="hero">
+    <h1>Open Source Smart<br>HandCricket AI</h1>
+    <div class="tagline">Play Hand Cricket with a clever AI that learns your moves.</div>
+    <a href="#" class="demo-btn" onclick="togglePlayground()">
+      Try Demo Now
+      <i class="fas fa-arrow-right"></i>
+    </a>
+  </section>
+
+  <section class="highlights">
+    <h2>Why Kriko AI?</h2>
+    <div class="highlights-grid">
+      <div class="highlight-card">
+        <h3>Outsmart the AI</h3>
+        <p>
+          Face a sharp AI opponent that adapts to your strategy, making every Hand Cricket match a thrilling challenge.
+        </p>
+      </div>
+      <div class="highlight-card">
+        <h3>Hack and Build</h3>
+        <p>
+          Dive into our open-source code on GitHub, tweak the AI, or add your own spin to make Kriko AI truly yours.
+        </p>
+      </div>
+      <div class="highlight-card">
+        <h3>Play Anywhere</h3>
+        <p>
+          Jump into a quick game on your phone, laptop, or tablet—Kriko AI is ready whenever you are.
+        </p>
+      </div>
+    </div>
+  </section>
 
   <div class="chat-container" id="chat">
     <div class="chat-header">Playground - Kriko AI 🤖</div>
@@ -254,8 +398,17 @@
   </div>
 
   <footer class="footer">
-    <p>© 2025 Kriko AI. Open Source. Built by <a href="https://github.com/Elitsuv" target="_blank" class="github-btn">Elitsuv</a></p>
+    <p>
+      © 2025 Kriko AI. Open Source. Built by <a href="https://github.com/Elitsuv" target="_blank">Elitsuv</a>.
+    </p>
   </footer>
+
   <script src="kriko-ai/ki-lite.js"></script>
+  <script>
+    function togglePlayground() {
+      const playground = document.getElementById('chat');
+      playground.classList.toggle('active');
+    }
+  </script>
 </body>
 </html>
