@@ -177,14 +177,10 @@
       background: var(--white);
       border-radius: var(--border-radius);
       box-shadow: var(--shadow-md);
-      display: none;
+      display: flex;
       flex-direction: column;
       height: 550px;
       overflow: hidden;
-    }
-
-    .chat-container.active {
-      display: flex;
     }
 
     .chat-header {
@@ -348,7 +344,7 @@
   <section class="hero">
     <h1>Open Source Smart<br>HandCricket AI</h1>
     <div class="tagline">Play Hand Cricket with a clever AI that learns your moves.</div>
-    <a href="#" class="demo-btn" onclick="togglePlayground()">
+    <a href="#" class="demo-btn" onclick="scrollToPlayground()">
       Try Demo Now
       <i class="fas fa-arrow-right"></i>
     </a>
@@ -366,7 +362,7 @@
       <div class="highlight-card">
         <h3>Build Together</h3>
         <p>
-          Dive into our open-source code on GitHub, tweak the AI, or add your own spin to make Kriko AI truly yours.
+          Dive into our open-source code on GitHub, tweak the AI, or add your own logic to make Kriko AI truly yours.
         </p>
       </div>
       <div class="highlight-card">
@@ -399,15 +395,15 @@
 
   <footer class="footer">
     <p>
-      © 2025 Kriko AI. Open Source. Built by <a href="https://github.com/Elitsuv" target="_blank">Elitsuv</a>.
+      © 2025 Kriko AI. Open Source. Built by <a href="https://github.com/Elitsuv" target="_blank">Elitsuv</a>
     </p>
   </footer>
 
   <script src="kriko-ai/ki-lite.js"></script>
   <script>
-    function togglePlayground() {
+    function scrollToPlayground() {
       const playground = document.getElementById('chat');
-      playground.classList.toggle('active');
+      playground.scrollIntoView({ behavior: 'smooth' });
     }
   </script>
 </body>
