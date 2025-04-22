@@ -20,6 +20,7 @@ statistical analysis. The model aims to simulate a competitive and engaging cric
 """
 
 import numpy as np
+import random
 
 def cypher(target=67, wickets=2):
     user_score = 0
