@@ -9,13 +9,15 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     :root {
-      --accent: #FF1D58;
-      --white: #ffffff;
-      --gray-dark: #2b2b2b;
-      --gray-light: #e0e0e0;
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
-      --border-radius: 8px;
+      --dark-purple: #4C1D95; 
+      --light-purple: #7C3AED; 
+      --black: #0F0F0F; 
+      --white: #EDE9FE; 
+      --gray: #6B7280; 
+      --shadow-sm: 0 4px 12px rgba(76, 29, 149, 0.3);
+      --shadow-md: 0 8px 24px rgba(76, 29, 149, 0.4);
+      --border-radius: 16px;
+      --transition: all 0.3s ease;
     }
 
     * {
@@ -26,17 +28,44 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--white);
-      color: var(--gray-dark);
+      background: var(--black);
+      color: var(--white);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Dynamic Grid Background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent 19px, var(--dark-purple) 20px),
+                  linear-gradient(transparent 19px, var(--dark-purple) 20px);
+      background-size: 20px 20px;
+      opacity: 0.15;
+      z-index: -1;
+      animation: gridPulse 10s infinite ease-in-out;
+    }
+
+    @keyframes gridPulse {
+      0%, 100% { opacity: 0.15; }
+      50% { opacity: 0.25; }
     }
 
     .header {
       padding: 20px;
-      text-align: center;
-      border-bottom: 1px solid var(--gray-light);
+      background: rgba(15, 15, 15, 0.85);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--gray);
     }
 
     .navbar {
@@ -45,163 +74,263 @@
       align-items: center;
       max-width: 1200px;
       margin: 0 auto;
+      padding: 0 20px;
     }
 
     .logo a {
-      font-size: 24px;
+      font-size: 32px;
       font-weight: 900;
-      color: var(--gray-dark);
+      color: var(--light-purple);
       text-decoration: none;
       text-transform: uppercase;
+      letter-spacing: 3px;
+      transition: var(--transition);
+    }
+
+    .logo a:hover {
+      color: var(--white);
+      text-shadow: 0 0 10px var(--light-purple);
     }
 
     .nav-links {
       display: flex;
-      gap: 15px;
+      gap: 20px;
+      align-items: center;
     }
 
     .nav-links a {
       display: flex;
       align-items: center;
       gap: 8px;
-      color: var(--gray-dark);
+      color: var(--white);
       text-decoration: none;
       font-weight: 600;
-      padding: 8px 16px;
+      padding: 10px 20px;
       border-radius: var(--border-radius);
-      transition: color 0.3s ease, background 0.3s ease;
+      transition: var(--transition);
     }
 
     .nav-links a:hover {
-      color: var(--accent);
-      background: rgba(255, 29, 88, 0.05);
+      background: var(--light-purple);
+      color: var(--black);
+      transform: scale(1.05);
     }
 
+    /* Hero Section */
     .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      padding: 80px 20px;
+      padding: 120px 20px;
+      min-height: 80vh;
       max-width: 1000px;
       margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 50%, rgba(76, 29, 149, 0.3), transparent 70%);
+      animation: glowPulse 8s infinite ease-in-out;
+      z-index: -1;
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { transform: scale(1); opacity: 0.3; }
+      50% { transform: scale(1.1); opacity: 0.5; }
     }
 
     .hero h1 {
-      font-size: 60px;
+      font-size: 72px; /* Increased size */
       font-weight: 900;
-      background: linear-gradient(45deg, var(--accent), #ff6b91);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      line-height: 1.1;
+      color: var(--light-purple); /* Single color */
       margin-bottom: 24px;
-      animation: fadeIn 1s ease-in-out;
-      line-height: 1.2;
+      max-width: 700px;
+      animation: slideIn 0.8s ease-out;
+      text-shadow: 0 0 8px rgba(76, 29, 149, 0.5);
     }
 
     .hero .tagline {
-      font-size: 20px;
-      color: #555;
+      font-size: 24px;
+      color: var(--gray);
       margin-bottom: 32px;
       font-weight: 600;
+      max-width: 600px;
+      animation: fadeIn 1.2s ease-out;
+    }
+
+    @keyframes slideIn {
+      0% { transform: translateY(40px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
     }
 
     @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
+      0% { opacity: 0; }
+      100% { opacity: 1; }
     }
 
-    .hero .demo-btn {
+    .hero .cta-btn {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 12px 24px;
-      background: var(--accent);
-      color: var(--white);
-      font-weight: 600;
+      gap: 12px;
+      padding: 16px 32px;
+      background: var(--light-purple);
+      color: var(--black);
+      font-weight: 700;
+      font-size: 18px;
       text-decoration: none;
       border-radius: var(--border-radius);
-      transition: background 0.3s ease;
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
     }
 
-    .hero .demo-btn:hover {
-      background: #e0144c;
+    .hero .cta-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transition: 0.6s;
+      z-index: -1;
+    }
+
+    .hero .cta-btn:hover::before {
+      left: 100%;
+    }
+
+    .hero .cta-btn:hover {
+      background: var(--white);
+      color: var(--dark-purple);
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(76, 29, 149, 0.7);
     }
 
     .highlights {
-      max-width: 900px;
-      margin: 40px auto;
+      max-width: 1200px;
+      margin: 80px auto;
       padding: 0 20px;
       text-align: center;
     }
 
     .highlights h2 {
-      font-size: 32px;
-      font-weight: 700;
-      margin-bottom: 16px;
+      font-size: 48px;
+      font-weight: 900;
+      color: var(--light-purple);
+      margin-bottom: 32px;
+      text-shadow: 0 0 10px rgba(76, 29, 149, 0.5);
     }
 
     .highlights-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 24px;
-      margin-top: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      margin-top: 32px;
+      padding: 0 20px;
     }
 
     .highlight-card {
-      background: var(--white);
-      padding: 24px;
+      background: rgba(15, 15, 15, 0.9);
+      padding: 32px;
       border-radius: var(--border-radius);
       box-shadow: var(--shadow-sm);
       text-align: left;
-      transition: transform 0.3s ease;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .highlight-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: var(--light-purple);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .highlight-card:hover::before {
+      transform: scaleX(1);
     }
 
     .highlight-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .highlight-card .icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 16px;
+      transition: var(--transition);
+    }
+
+    .highlight-card:hover .icon {
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 8px rgba(76, 29, 149, 0.7));
     }
 
     .highlight-card h3 {
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: var(--accent);
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--light-purple);
+      margin-bottom: 16px;
     }
 
     .highlight-card p {
       font-size: 16px;
-      color: #555;
-      line-height: 1.5;
+      color: var(--gray);
+      line-height: 1.6;
     }
 
     .chat-container {
-      max-width: 900px;
-      margin: 40px auto;
-      background: var(--white);
+      max-width: 1000px;
+      margin: 80px auto;
+      background: rgba(15, 15, 15, 0.9);
       border-radius: var(--border-radius);
       box-shadow: var(--shadow-md);
       display: flex;
       flex-direction: column;
-      height: 550px;
+      height: 600px;
       overflow: hidden;
     }
 
     .chat-header {
-      background: var(--white);
-      color: var(--gray-dark);
-      padding: 15px;
-      font-size: 20px;
-      font-weight: 600;
+      background: var(--dark-purple);
+      color: var(--white);
+      padding: 20px;
+      font-size: 28px;
+      font-weight: 700;
       text-align: center;
-      border-bottom: 1px solid var(--gray-light);
+      text-shadow: 0 0 10px rgba(76, 29, 149, 0.5);
     }
 
     .chat-messages {
       flex: 1;
-      padding: 20px;
+      padding: 24px;
       overflow-y: auto;
-      background: #fafafa;
+      background: rgba(20, 20, 20, 0.95);
     }
 
     .message {
-      margin-bottom: 15px;
+      margin-bottom: 20px;
       display: flex;
       align-items: flex-start;
     }
@@ -215,30 +344,31 @@
     }
 
     .message-content {
-      padding: 12px 16px;
+      padding: 14px 20px;
       border-radius: var(--border-radius);
-      font-size: 15px;
-      max-width: 75%;
+      font-size: 16px;
+      max-width: 80%;
+      transition: var(--transition);
     }
 
     .message.user .message-content {
-      background: var(--accent);
-      color: var(--white);
+      background: var(--light-purple);
+      color: var(--black);
     }
 
     .message.ai .message-content {
-      background: var(--white);
-      color: var(--gray-dark);
+      background: var(--gray);
+      color: var(--white);
       box-shadow: var(--shadow-sm);
     }
 
     .ai-avatar {
-      width: 40px;
-      height: 40px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
-      margin-right: 10px;
+      margin-right: 12px;
       overflow: hidden;
-      background: var(--white);
+      background: var(--light-purple);
       padding: 2px;
       box-shadow: var(--shadow-sm);
     }
@@ -251,72 +381,96 @@
     }
 
     .chat-input {
-      padding: 15px;
-      background: var(--white);
-      border-top: 1px solid var(--gray-light);
+      padding: 20px;
+      background: rgba(15, 15, 15, 0.9);
+      border-top: 1px solid var(--gray);
       display: flex;
-      gap: 10px;
+      gap: 12px;
     }
 
     .chat-input input {
       flex: 1;
-      padding: 10px 14px;
-      border-radius: 6px;
-      border: 1px solid var(--gray-light);
-      font-size: 15px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--gray);
+      background: #1A1A1A;
+      color: var(--white);
+      font-size: 16px;
       outline: none;
+      transition: var(--transition);
+    }
+
+    .chat-input input:focus {
+      border-color: var(--light-purple);
+      box-shadow: 0 0 10px rgba(76, 29, 149, 0.5);
     }
 
     .chat-input button {
-      padding: 10px 20px;
-      background: var(--accent);
-      color: var(--white);
+      padding: 12px 24px;
+      background: var(--light-purple);
+      color: var(--black);
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
-      font-weight: 600;
+      font-weight: 700;
+      transition: var(--transition);
     }
 
     .chat-input button:hover {
-      background: #e0144c;
+      background: var(--white);
+      color: var(--dark-purple);
+      transform: scale(1.05);
     }
 
     .footer {
-      background: var(--white);
-      border-top: 1px solid var(--gray-light);
-      padding: 1.5rem;
+      background: rgba(15, 15, 15, 0.9);
+      border-top: 1px solid var(--gray);
+      padding: 2rem;
       text-align: center;
-      font-size: 14px;
-      color: #666;
+      font-size: 16px;
+      color: var(--gray);
       margin-top: auto;
     }
 
     .footer a {
-      color: var(--accent);
+      color: var(--light-purple);
       text-decoration: none;
+      transition: var(--transition);
     }
 
     .footer a:hover {
-      text-decoration: underline;
+      color: var(--white);
+      text-shadow: 0 0 10px var(--light-purple);
     }
 
     @media (max-width: 768px) {
       .navbar {
         flex-direction: column;
-        gap: 10px;
+        gap: 16px;
+      }
+      .hero {
+        padding: 80px 20px;
+        min-height: 70vh;
       }
       .hero h1 {
-        font-size: 40px;
+        font-size: 56px; /* Increased size for mobile */
       }
       .hero .tagline {
-        font-size: 18px;
+        font-size: 20px;
+      }
+      .hero .cta-btn {
+        padding: 14px 28px;
+        font-size: 16px;
       }
       .chat-container {
-        margin: 20px;
-        height: 400px;
+        margin: 40px 16px;
+        height: 500px;
       }
       .highlights h2 {
-        font-size: 28px;
+        font-size: 36px;
+      }
+      .highlight-card {
+        padding: 24px;
       }
     }
   </style>
@@ -325,7 +479,7 @@
   <header class="header">
     <nav class="navbar">
       <div class="logo">
-        <a href="/">KRIKO-AI</a>
+        <a href="/">Kriko AI</a>
       </div>
       <div class="nav-links">
         <a href="https://github.com/elitsuv/kriko-ai" target="_blank">
@@ -334,62 +488,69 @@
         <a href="#" target="_blank">
           <i class="fas fa-book"></i> Docs
         </a>
-        <a href="#" target="_blank">
-          <i class="fas fa-comment-dots"></i> Feedback
-        </a>
       </div>
     </nav>
   </header>
 
   <section class="hero">
-    <h1>Open Source Smart<br>HandCricket AI</h1>
-    <div class="tagline">Play Hand Cricket with a clever AI that learns your moves.</div>
-    <a href="#" class="demo-btn" onclick="scrollToPlayground()">
-      Try Demo Now
-      <i class="fas fa-arrow-right"></i>
+    <h1>Dominate with Skill<br>Kriko AI</h1>
+    <div class="tagline">Outplay a wickedly smart AI in Hand Cricket that vibes with your moves!</div>
+    <a href="#" class="cta-btn" onclick="scrollToPlayground()">
+      Jump In Now
+      <i class="fas fa-rocket"></i>
     </a>
   </section>
 
   <section class="highlights">
-    <h2>Why Kriko AI?</h2>
+    <h2>Why Kriko AI Rocks</h2>
     <div class="highlights-grid">
       <div class="highlight-card">
-        <h3>Outsmart the AI</h3>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="var(--light-purple)" stroke-width="2">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-12c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+        </svg>
+        <h3>Beat the Brain</h3>
         <p>
-          Face a sharp AI opponent that adapts to your strategy, making every Hand Cricket match a thrilling challenge.
+          Take on an AI that learns your tricks, making every Hand Cricket match a wild ride.
         </p>
       </div>
       <div class="highlight-card">
-        <h3>Build Together</h3>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="var(--light-purple)" stroke-width="2">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm0-4h-2V7h2v8z"/>
+        </svg>
+        <h3>Build & Play</h3>
         <p>
-          Dive into our open-source code on GitHub, tweak the AI, or add your own logic to make Kriko AI truly yours.
+          Dive into our open-source code on GitHub and remix Kriko AI to match your style.
         </p>
       </div>
       <div class="highlight-card">
-        <h3>Play Anywhere</h3>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="var(--light-purple)" stroke-width="2">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V8h2v4zm4 4h-2v-2h2v2zm0-4h-2V8h2v4z"/>
+        </svg>
+        <h3>Game On, Anywhere</h3>
         <p>
-          Jump into a quick game on your phone, laptop, or tablet—Kriko AI is ready whenever you are.
+          Play on your phone, laptop, or tablet—Kriko AI is ready to roll wherever you are.
+          *Currently only available on desktop.
         </p>
       </div>
     </div>
   </section>
 
   <div class="chat-container" id="chat">
-    <div class="chat-header">Playground - Kriko AI 🤖</div>
+    <div class="chat-header">Kriko AI Playground 🤖</div>
     <div class="chat-messages" id="messages">
       <div class="message ai">
         <div class="ai-avatar">
           <img src="ki.jpg" alt="AI Avatar" />
         </div>
-        <div class="message-content">Hello! Ready to play Hand Cricket?</div>
+        <div class="message-content">Yo! Ready to dominate Hand Cricket?</div>
       </div>
       <div class="message user">
-        <div class="message-content">Yes! Let's go!</div>
+        <div class="message-content">Let's do this!</div>
       </div>
     </div>
     <div class="chat-input">
-      <input type="text" placeholder="Type your move (1-6)..." />
-      <button>Send</button>
+      <input type="text" placeholder="Drop your move (1-6)..." />
+      <button>Send!</button>
     </div>
   </div>
 
@@ -404,6 +565,7 @@
     function scrollToPlayground() {
       const playground = document.getElementById('chat');
       playground.scrollIntoView({ behavior: 'smooth' });
+      return false;
     }
   </script>
 </body>
