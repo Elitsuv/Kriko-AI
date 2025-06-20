@@ -1,5 +1,5 @@
-<p align="left">
-  <img src="ki.jpg" alt="Kriko Logo" width="200">
+<p align="center">
+  <img src="ki.png" alt="Kriko Logo" width="200">
 </p>
 
 # 🏏 Kriko - AI Hand Cricket
